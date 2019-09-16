@@ -1,5 +1,7 @@
 package steps;
 
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.openqa.selenium.WebDriver;
@@ -16,7 +18,7 @@ public class BaseStep {
 
 
 
-    @BeforeClass
+    @Before
     public static void setUp() throws Exception{
         System.setProperty("webdriver.chrome.driver", properties.getProperty("path.chrome"));
         driver = new ChromeDriver();
@@ -25,7 +27,7 @@ public class BaseStep {
         driver.manage().window().maximize();
         driver.get(baseUrl);
     }
-    @AfterClass
+    @After
     public static void tearDown()throws Exception{
         driver.quit();
     }

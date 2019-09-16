@@ -33,6 +33,9 @@
                 <version>2.20</version>
 
                 <configuration>
+                    <includes>
+                        <include>**/CucumberRunner.java</include>
+                    </includes>
 
                     <testFailureIgnore>true</testFailureIgnore>
                     <argLine>
