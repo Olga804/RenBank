@@ -2,7 +2,7 @@ import org.junit.Test;
 import pages.DepositPage;
 import pages.MainPage;
 
-public class MyTest {
+public class MyTest extends BaseSteps {
 
     @Test
     public void renCredit(){
