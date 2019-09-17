@@ -16,8 +16,7 @@ import java.util.function.Function;
 
 public class DepositPage extends BasePage {
     Wait<WebDriver> wait = new WebDriverWait(driver, 15);
-    @FindBy (xpath = "//h2[contains(text(),'Рассчитайте доходность')]/" +
-            "following-sibling::*//input[contains(@value,'')][contains(@type,'radio')]")
+    @FindBy (xpath = "//div[contains(text(),'Валюта')]/following-sibling::*//input[contains(@value,'')]")
     List<WebElement> money;
     @FindBy (xpath = "//label[contains(text(),'')]")
     List<WebElement> field;
@@ -34,17 +33,18 @@ public class DepositPage extends BasePage {
             if(item.getAttribute("value").equalsIgnoreCase(string)){
                 if(!item.isSelected()){
                     item.click();
+                    return;
                 }
             }
 
         }
-        Assert.fail("Не найден пункт меню - " + string);
+       // Assert.fail("Не найден пункт меню - " + string);
     }
 
     public void selectField(String string, String value){
         for (WebElement item:
              field) {
-            if (item.getAttribute("contentText").equalsIgnoreCase(string)){
+            if (item.getAttribute("textContent").equalsIgnoreCase(string)){
                 item.click();
                 String path = String.format("//label[contains(text(),'%s')]/" +
                         "following-sibling::*//input", string);
@@ -76,6 +76,14 @@ public class DepositPage extends BasePage {
 
         }
         Assert.fail("Не найден пункт меню - " + string);
+    }
+
+    public void checkBox(String string){
+        String path = String.format("//span[contains(text(),'%s')]/parent::*/preceding-sibling::*//input", string);
+        if(!driver.findElement(By.xpath(path)).isSelected()){
+            path = String.format("//span[contains(text(),'%s')]/parent::*/preceding-sibling::*/div",string);
+        }
+        driver.findElement(By.xpath(path)).click();
     }
 
     public void assertDep(String string){

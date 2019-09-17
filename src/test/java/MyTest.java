@@ -7,8 +7,8 @@ public class MyTest {
     @Test
     public void renCredit(){
         MainPage mainPage = new MainPage();
-        mainPage.selectMainMenuItem("Вклады");
-        mainPage.selectSubMenu("Открыть вклад");
+        mainPage.selectMainMenuItem("Вклады", "Открыть вклад");
+        //mainPage.selectSubMenu("Открыть вклад");
         DepositPage depositPage = new DepositPage();
         depositPage.selectMoney("RUB");
         depositPage.selectField("Сумма вклада", "300000");

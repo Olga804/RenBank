@@ -1,6 +1,7 @@
 package steps;
 
 
+import io.cucumber.java.ru.И;
 import io.cucumber.java.ru.Когда;
 import io.cucumber.java.ru.Тогда;
 
@@ -8,47 +9,50 @@ public class Keys1Step {
     MainSteps mainSteps = new MainSteps();
     DepositSteps depositSteps = new DepositSteps();
 
-    @Когда("^Навести курсор на пункт меню \"(.+)\".$")
-    public void selectMainMenuItem(String menuItem){
-        mainSteps.selectMainMenuItem(menuItem);
+    @Когда("^Навести курсор на пункт меню \"(.+)\", дождаться появления \"(.+)\" и кликнуть по нему.$")
+    public void selectMainMenuItem(String menuItem, String subMenu){
+        mainSteps.selectMainMenuItem(menuItem, subMenu);
     }
 
-    @Когда("^Дождаться появления \"(.+)\" и кликнуть по нему.$")
+    /*@Когда("^Дождаться появления \"(.+)\" и кликнуть по нему.$")
     public void selectSubMenu(String menuItem){
         mainSteps.selectSubMenu(menuItem);
     }
 
-    @Когда("^Выбрать валюту \"(.+)\".$")
+     */
+
+    @И("^Выбрать валюту \"(.+)\".$")
     public void selectMoney(String string){
         depositSteps.selectMoney(string);
     }
 
-    @Когда("^Сумма вклада = \"(.+)\".$")
-    public void selectField1(String string, String value){
-        depositSteps.selectField1(string, value);
+    @И("^\"(.+)\" = \"(.+)\".$")
+    public void selectField(String string, String value){
+        depositSteps.selectField(string, value);
     }
 
-    @Когда("^Срок - \"(.+)\".$")
+    @И("^Срок - \"(.+)\".$")
     public void selectData(String string){
         depositSteps.selectData(string);
     }
 
-    @Когда("^Ежемесячное пополнение = \"(.+)\".$")
-    public void selectField2(String string, String value){
-        depositSteps.selectField2(string, value);
+    @И("^Нажать \"(.+)\".$")
+    public void checkBox(String string){
+        depositSteps.checkBox(string);
     }
 
-    @Тогда("^Проверить, что процентная ставка = \"(.+)\".$")
+
+    @Тогда("^Проверить, что процентная ставка - \"(.+)\".$")
     public void assertDep(String string){
         depositSteps.assertDep(string);
     }
 
-    @Тогда("^Проверить, что к снятию через 6 месяцев - \"(.+)\".$")
+    @И("^Проверить, что к снятию через 6 месяцев - \"(.+)\".$")
     public void assertDepResult(String string){
         depositSteps.assertDepResult(string);
     }
 
-    @Тогда("^Проверить, что начислено  - \"(.+)\".$")
+    @И("^Проверить, что начислено  - \"(.+)\".$")
     public void assertResult(String string){
         depositSteps.assertResult(string);
     }

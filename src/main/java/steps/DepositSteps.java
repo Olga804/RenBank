@@ -11,7 +11,7 @@ public class DepositSteps {
     }
 
     @Step ("{string} = {value}")
-    public void selectField1(String string, String value){
+    public void selectField(String string, String value){
         new DepositPage().selectField(string, value);
     }
 
@@ -20,10 +20,13 @@ public class DepositSteps {
         new DepositPage().selectData(string);
     }
 
-    @Step ("{string} = {value}")
-    public void selectField2(String string, String value){
-        new DepositPage().selectField(string, value);
+    @Step("Нажать поле {string}")
+        public void checkBox(String string){
+        new DepositPage().checkBox(string);
     }
+
+
+
 
     @Step ("Проверить, что процентная ставка = {string}")
     public void assertDep(String string){
